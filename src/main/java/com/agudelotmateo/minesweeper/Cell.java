@@ -9,8 +9,8 @@ class Cell {
     /**
      * pending!
      */
-    public Cell() {
-        this.hasBomb = false;
+    public Cell(boolean hasBomb) {
+        this.hasBomb = hasBomb;
     }
 
     @Override
