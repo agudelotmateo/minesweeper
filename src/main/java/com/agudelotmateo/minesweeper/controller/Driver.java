@@ -24,7 +24,7 @@ public class Driver {
     }
 
     /**
-     * pending!
+     * Welcomes the user to the new game session.
      */
     public void welcomeUser() {
         System.out.println("Welcome to Minesweeper!");
@@ -53,7 +53,7 @@ public class Driver {
     }
 
     /**
-     * pending!
+     * Runs the game loop.
      */
     public void playGame() {
         // Loop until game ends
@@ -109,7 +109,7 @@ public class Driver {
     }
 
     /**
-     * pending!
+     * Farewells the user
      */
     public void thankUser() {
         System.out.println("Thanks for playing Minesweeper! Please come back soon =)");
