@@ -22,9 +22,9 @@ public final class Random {
      * @param arr the array to be shuffled
      * @throws IllegalArgumentException if the array does not contain at least one
      *                                  element
-     * @see <a
-     *      href="Fisher–Yates shuffle - Wikipedia">https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle</a>
-     *      pending!
+     * @see <a href=
+     *      "https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher–Yates
+     *      shuffle - Wikipedia</a>
      */
     public static void shuffle(int[] arr) {
         // Check for input validity
