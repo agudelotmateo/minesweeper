@@ -29,7 +29,7 @@ class Cell {
      * @return whether this cell contains a bomb
      */
     public boolean hasBomb() {
-        return hasBomb;
+        return this.hasBomb;
     }
 
     /**
@@ -38,7 +38,7 @@ class Cell {
      * @return whether this cell is flagged
      */
     public boolean isFlagged() {
-        return isFlagged;
+        return this.isFlagged;
     }
 
     /**
@@ -47,7 +47,7 @@ class Cell {
      * @return whether this cell is covered
      */
     public boolean isCovered() {
-        return isCovered;
+        return this.isCovered;
     }
 
     /**

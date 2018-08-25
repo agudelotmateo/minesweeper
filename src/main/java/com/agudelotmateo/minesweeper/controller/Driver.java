@@ -7,18 +7,20 @@ import javax.activity.InvalidActivityException;
 import com.agudelotmateo.minesweeper.model.Board;
 
 /**
- * pending!
+ * Controls the execution of the game.
+ * 
+ * @author Mateo Agudelo Toro
  */
 public class Driver {
     private Board gameboard;
     private Scanner scanner;
 
     /**
-     * pending!
+     * Creates a new game driver.
      */
     public Driver() {
-        gameboard = null;
-        scanner = new Scanner(System.in);
+        this.gameboard = null;
+        this.scanner = new Scanner(System.in);
     }
 
     /**
@@ -39,11 +41,11 @@ public class Driver {
 
         // Keep reading until properly built
         while (gameboard == null) {
-            int rows = scanner.nextInt();
-            int columns = scanner.nextInt();
-            int bombs = scanner.nextInt();
+            int rows = this.scanner.nextInt();
+            int columns = this.scanner.nextInt();
+            int bombs = this.scanner.nextInt();
             try {
-                gameboard = new Board(rows, columns, bombs);
+                this.gameboard = new Board(rows, columns, bombs);
             } catch (IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage() + ". Please try again:");
             }
@@ -55,17 +57,17 @@ public class Driver {
      */
     public void playGame() {
         // Loop until game ends
-        while (!gameboard.isGameOver()) {
+        while (!this.gameboard.isGameOver()) {
             // Print current state and ask for new input
-            System.out.println(gameboard);
+            System.out.println(this.gameboard);
             System.out.println("Enter command: ");
             int row = -1;
             int column = -1;
             String operation = null;
             try {
-                row = scanner.nextInt() - 1;
-                column = scanner.nextInt() - 1;
-                operation = scanner.next();
+                row = this.scanner.nextInt() - 1;
+                column = this.scanner.nextInt() - 1;
+                operation = this.scanner.next();
             } catch (NumberFormatException e) {
                 System.out.println("Error: invalid coordinates. Please try again:");
             }
@@ -74,7 +76,7 @@ public class Driver {
             // Mark/Flag (toggle)
             if (operation.equals("M")) {
                 try {
-                    gameboard.toggleCellFlag(row, column);
+                    this.gameboard.toggleCellFlag(row, column);
                 } catch (InvalidActivityException e) {
                     System.out.println("Error: " + e.getMessage() + ". Please try again:");
                 } catch (IllegalArgumentException e) {
@@ -84,7 +86,7 @@ public class Driver {
             // Uncover
             else if (operation.equals("U")) {
                 try {
-                    gameboard.uncoverCell(row, column);
+                    this.gameboard.uncoverCell(row, column);
                 } catch (InvalidActivityException e) {
                     System.out.println("Error: " + e.getMessage() + ". Please try again:");
                 } catch (IllegalArgumentException e) {
@@ -96,11 +98,14 @@ public class Driver {
         }
 
         // End game
-        System.out.println(gameboard);
-        if (gameboard.isGameWon())
+        System.out.println(this.gameboard);
+        if (this.gameboard.isGameWon())
             System.out.println("CONGRATULATIONS!!! You win!");
         else
             System.out.println("Well, you just lost...");
+
+        // Close user input
+        this.scanner.close();
     }
 
     /**
