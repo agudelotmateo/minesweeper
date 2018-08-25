@@ -80,4 +80,20 @@ class Cell {
     public void setAdjacentCounter(int adjacentCounter) {
         this.adjacentCounter = adjacentCounter;
     }
+
+    /**
+     * String representation of the cell.
+     *
+     * @return String representation of the cell
+     */
+    @Override
+    public String toString() {
+        if (this.isCovered)
+            return this.isFlagged ? "P" : ".";
+        if (this.hasBomb)
+            return this.isFlagged ? "P" : "*";
+        if (this.adjacentCounter == 0)
+            return "-";
+        return Integer.toString(this.adjacentCounter);
+    }
 }
