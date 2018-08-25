@@ -32,7 +32,16 @@ public class Board {
     private HashSet<Integer> bombLocations, flaggedLocations;
 
     /**
-     * pending!
+     * Creates a new game board given the exact specifications.
+     * 
+     * @param rows    board's height. Must be positive, and no upper limit is
+     *                enforced
+     * @param columns board's width. Must be positive, and no upper limit is
+     *                enforced
+     * @param bombs   amount of bombs to randomly place on the board. Must be
+     *                positive and fit in the board
+     * @throws IllegalArgumentException if the parameter's restrictions are not
+     *                                  followed
      */
     public Board(int rows, int columns, int bombs) {
         // Check for input validity (no upper bound for rows/columns right now)
@@ -57,18 +66,27 @@ public class Board {
         this.columns = columns;
         this.gameOver = false;
         this.gameWon = false;
-        flaggedLocations = new HashSet<>();
+        this.flaggedLocations = new HashSet<>();
     }
 
     /**
-     * pending!
+     * Check whether a coordinate maps to a valid cell inside the board.
+     * 
+     * @param row    cell's row (y-value)
+     * @param column cells's column (x-value)
+     * @return whether the given position is valid
      */
     private boolean validPosition(int row, int column) {
         return row >= 0 && column >= 0 && row < this.cells.length && column < this.cells[row].length;
     }
 
     /**
-     * pending!
+     * Counts the number of bombs adjacent to the cell at the position specified by
+     * the given coordinates (row, column).
+     * 
+     * @param row    cell's row (y-value)
+     * @param column cells's column (x-value)
+     * @return the amount of adjacent cells that contain bombs.
      */
     private int countAdjacentBombs(int row, int column) {
         // Iterate throught all of the valid possibilities
@@ -85,7 +103,8 @@ public class Board {
     }
 
     /**
-     * pending!
+     * Marks all the cells in the board that contain bombs as uncovered, effectively
+     * uncovering all bombs in the board.
      */
     private void uncoverAllBombs() {
         for (int bomb1D : this.bombLocations)
@@ -93,10 +112,17 @@ public class Board {
     }
 
     /**
-     * pending!
+     * Uncovers the cell at the position specified by the given coordinates (row,
+     * column). If the now uncovered cell does not have any adjacent bombs, the
+     * adjacent cells are recursively uncovered automatically.
+     * 
+     * @param row    cell's row (y-value)
+     * @param column cells's column (x-value
+     * @throws InvalidActivityException if the game already ended
+     * @throws IllegalArgumentException if the specified position is invalid
      */
     public void uncoverCell(int row, int column) throws InvalidActivityException {
-        // Check if game isn't already finished
+        // Check if game is not already finished
         if (this.gameOver)
             throw new InvalidActivityException(GAME_OVER);
 
@@ -135,10 +161,17 @@ public class Board {
     }
 
     /**
-     * pending!
+     * Toggles the flagged state of the cell at the position specified by the given
+     * coordinates (row, column). That is, if the cell is not flagged before calling
+     * this method, it will be flagged after it runs, and viceversa.
+     * 
+     * @param row    cell's row (y-value)
+     * @param column cells's column (x-value
+     * @throws InvalidActivityException if the game already ended
+     * @throws IllegalArgumentException if the specified position is invalid
      */
     public void toggleCellFlag(int row, int column) throws InvalidActivityException {
-        // Check if game isn't already finished
+        // Check if game is not already finished
         if (this.gameOver)
             throw new InvalidActivityException(GAME_OVER);
 
@@ -164,6 +197,11 @@ public class Board {
         }
     }
 
+    /**
+     * String representation of the gameboard.
+     * 
+     * @return String representation of the gameboard
+     */
     @Override
     public String toString() {
         // Initialize string with an initial capacity for improved efficiency
@@ -207,14 +245,18 @@ public class Board {
     }
 
     /**
-     * pending!
+     * Checks if the game has already finished.
+     * 
+     * @return whether the game has already finished
      */
     public boolean isGameOver() {
         return this.gameOver;
     }
 
     /**
-     * pending!
+     * Checks if the user game has already won the game.
+     * 
+     * @return whether the user game has already won the game
      */
     public boolean isGameWon() {
         return this.gameWon;
