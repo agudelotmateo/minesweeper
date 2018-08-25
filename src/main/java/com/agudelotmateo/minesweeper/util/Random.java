@@ -14,8 +14,7 @@ public final class Random {
     private static final String BAD_RANGE = "bound must be greater than origin";
 
     // Does not make sense to instantiate this class
-    private Random() {
-    }
+    private Random() { }
 
     /**
      * Shuffles an array of integers using Fisher-Yates's algorithm.
@@ -31,6 +30,7 @@ public final class Random {
         // Check for input validity
         if (arr == null || arr.length <= 0)
             throw new IllegalArgumentException(BAD_ARRAY);
+
         // Shuffle the array
         for (int i = arr.length - 1; i > 0; --i) {
             int j = ThreadLocalRandom.current().nextInt(i + 1);
