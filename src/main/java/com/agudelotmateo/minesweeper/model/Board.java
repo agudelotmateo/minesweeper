@@ -213,29 +213,14 @@ public class Board {
             sb.append(String.format("%-2d", j + 1));
         sb.append('\n');
 
-        // Print the actual board, including an extra coumn indicating the row number
+        // Print the actual board, including an extra column indicating the row number
         for (int i = 0; i < this.rows; ++i) {
             // Row number
             sb.append(String.format("%-2d ", i + 1));
 
+            // Print the cells separated by spaces
             for (int j = 0; j < this.columns; ++j) {
-                // Get the cell information and print accordingly
-                Cell cell = this.cells[i][j];
-                if (cell.isCovered())
-                    sb.append(cell.isFlagged() ? 'P' : '.');
-                else {
-                    if (cell.hasBomb())
-                        sb.append(cell.isFlagged() ? 'P' : '*');
-                    else {
-                        int count = cell.adjacentCount();
-                        if (count == 0)
-                            sb.append('-');
-                        else
-                            sb.append(count);
-                    }
-                }
-
-                // Separate the cells using spaces
+                sb.append(this.cells[i][j]);
                 sb.append(j == this.rows - 1 ? '\n' : ' ');
             }
         }
