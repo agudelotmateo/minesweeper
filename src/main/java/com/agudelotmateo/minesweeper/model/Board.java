@@ -134,9 +134,9 @@ public class Board {
         if (!validPosition(row, column))
             throw new IllegalArgumentException(INVALID_CELL);
 
-        // If cell is already uncovered, do nothing
+        // Only uncovered and non-flagged cells can be uncovered
         Cell cell = this.cells[row][column];
-        if (!cell.isCovered())
+        if (!cell.isCovered() || cell.isFlagged())
             return;
 
         // Uncover the cell
