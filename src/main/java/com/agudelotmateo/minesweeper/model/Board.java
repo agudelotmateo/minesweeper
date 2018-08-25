@@ -1,6 +1,7 @@
 package com.agudelotmateo.minesweeper.model;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import javax.activity.InvalidActivityException;
 
@@ -26,10 +27,13 @@ public class Board {
     private static final int[] COLUMN_DISPLACEMENTS = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
     // Board state
-    private Cell cells[][];
-    private int rows, columns;
-    private boolean gameOver, gameWon;
-    private HashSet<Integer> bombLocations, flaggedLocations;
+    private Cell[][] cells;
+    private int rows;
+    private int columns;
+    private boolean gameOver;
+    private boolean gameWon;
+    private Set<Integer> bombLocations;
+    private Set<Integer> flaggedLocations;
 
     /**
      * Creates a new game board given the exact specifications.
@@ -193,7 +197,6 @@ public class Board {
             this.gameOver = true;
             this.gameWon = true;
             uncoverAllBombs();
-            return;
         }
     }
 

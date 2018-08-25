@@ -1,5 +1,6 @@
 package com.agudelotmateo.minesweeper.util;
 
+import java.util.Set;
 import java.util.HashSet;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -52,7 +53,7 @@ public final class Random {
      * @throws IllegalArgumentException if {@code origin} is greater than or equal
      *                                  to {@code bound}
      */
-    public static HashSet<Integer> nUniqueIntsInRange(int n, int origin, int bound) {
+    public static Set<Integer> nUniqueIntsInRange(int n, int origin, int bound) {
         // Check for input validity
         if (origin >= bound)
             throw new IllegalArgumentException(BAD_RANGE);
@@ -66,7 +67,7 @@ public final class Random {
         shuffle(range);
 
         // Take the first n of them only
-        HashSet<Integer> unique = new HashSet<Integer>(n);
+        HashSet<Integer> unique = new HashSet<>(n);
         for (int i = 0; i < n; ++i)
             unique.add(range[i]);
         return unique;
