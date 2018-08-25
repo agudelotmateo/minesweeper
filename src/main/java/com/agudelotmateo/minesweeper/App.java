@@ -10,7 +10,7 @@ import com.agudelotmateo.minesweeper.controller.Driver;
  * @author Mateo Agudelo Toro
  */
 public class App {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Driver game = new Driver();
         game.welcomeUser();
         game.createBoardFromStandardInput();
