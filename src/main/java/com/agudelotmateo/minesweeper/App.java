@@ -1,7 +1,5 @@
 package com.agudelotmateo.minesweeper;
 
-import java.io.IOException;
-
 import com.agudelotmateo.minesweeper.controller.Driver;
 
 /**
