@@ -17,7 +17,9 @@ public class Board {
     private static final String TOO_FEW_ROWS = "rows must be positive";
     private static final String TOO_FEW_COLUMNS = "columns must be positive";
     private static final String TOO_FEW_BOMBS = "bombs must be positive";
-    private static final String TOO_MUCH_BOMBS = "bombs cannot be greater than the total number of cells";
+    private static final String TOO_MANY_ROWS = "rows must be less than 100";
+    private static final String TOO_MANY_COLUMNS = "columns must be less than 100";
+    private static final String TOO_MANY_BOMBS = "bombs cannot be greater than the total number of cells";
     private static final String INVALID_CELL = "invalid cell coordinates";
     private static final String GAME_OVER = "game already finished";
 
@@ -55,8 +57,12 @@ public class Board {
             throw new IllegalArgumentException(TOO_FEW_COLUMNS);
         if (bombs <= 0)
             throw new IllegalArgumentException(TOO_FEW_BOMBS);
+        if (rows >= 100)
+            throw new IllegalArgumentException(TOO_MANY_ROWS);
+        if (columns >= 100)
+            throw new IllegalArgumentException(TOO_MANY_COLUMNS);
         if (bombs > rows * columns)
-            throw new IllegalArgumentException(TOO_MUCH_BOMBS);
+            throw new IllegalArgumentException(TOO_MANY_BOMBS);
 
         // Generate bomb locations in the board randomly and populate accordingly
         this.bombLocations = Random.nUniqueIntsInRange(bombs, 0, rows * columns);
@@ -210,16 +216,25 @@ public class Board {
         // Initialize string with an initial capacity for improved efficiency
         StringBuilder sb = new StringBuilder(2 * (this.rows + 1) * (this.columns + 2));
 
+        // Add a new line for asthetic purposes
+        sb.append('\n');
+
         // Add a row indicating the column number
-        sb.append("   ");
+        sb.append("    ");
         for (int j = 0; j < this.columns; ++j)
             sb.append(String.format("%-2d", j + 1));
         sb.append('\n');
 
+        // Add an empty row separating the column indicator from the actual board
+        sb.append("     ");
+        for (int j = 0; j < this.columns; ++j)
+            sb.append("  ");
+        sb.append('\n');
+
         // Print the actual board, including an extra column indicating the row number
         for (int i = 0; i < this.rows; ++i) {
-            // Row number
-            sb.append(String.format("%-2d ", i + 1));
+            // Row number and separator
+            sb.append(String.format("%-2d  ", i + 1));
 
             // Print the cells separated by spaces
             for (int j = 0; j < this.columns; ++j) {
