@@ -13,6 +13,10 @@ import com.agudelotmateo.minesweeper.util.Random;
  * @author Mateo Agudelo Toro
  */
 public class Board {
+    // Global constants
+    public static final int MAX_ROWS_EXCLUSIVE = 100;
+    public static final int MAX_COLUMNS_EXCLUSIVE = 100;
+
     // IllegalArgumentException messages
     private static final String TOO_FEW_ROWS = "rows must be positive";
     private static final String TOO_FEW_COLUMNS = "columns must be positive";
@@ -57,9 +61,9 @@ public class Board {
             throw new IllegalArgumentException(TOO_FEW_COLUMNS);
         if (bombs <= 0)
             throw new IllegalArgumentException(TOO_FEW_BOMBS);
-        if (rows >= 100)
+        if (rows >= MAX_ROWS_EXCLUSIVE)
             throw new IllegalArgumentException(TOO_MANY_ROWS);
-        if (columns >= 100)
+        if (columns >= MAX_COLUMNS_EXCLUSIVE)
             throw new IllegalArgumentException(TOO_MANY_COLUMNS);
         if (bombs > rows * columns)
             throw new IllegalArgumentException(TOO_MANY_BOMBS);
